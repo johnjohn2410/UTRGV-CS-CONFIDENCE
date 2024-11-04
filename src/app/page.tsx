@@ -1,101 +1,124 @@
-import Image from "next/image";
+"use client";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import VanillaTilt from 'vanilla-tilt';
+
+function Tilt({ children }: { children: React.ReactNode }) {
+  const tiltRef = useRef(null);
+
+  useEffect(() => {
+    const tiltNode = tiltRef.current;
+    VanillaTilt.init(tiltNode!, {
+      max: 10,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.3,
+      scale: 1.05
+    });
+    return () => {
+      if (tiltNode) {
+        // @ts-ignore
+        tiltNode.vanillaTilt.destroy();
+      }
+    };
+  }, []);
+
+  return (
+      <div ref={tiltRef} className="w-full">
+        {children}
+      </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <div className="bg-[#F05023] text-white py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex items-center gap-8 mb-4">
+              <div>
+                <h2 className="text-4xl font-bold mb-4">Welcome to UTRGV Computer Science Confidence</h2>
+                <p className="text-xl">Building confidence and overcoming imposter syndrome in computer science.</p>
+              </div>
+              <Image
+                  src="/images/v-logo2.png"
+                  alt="UTRGV Logo"
+                  width={300}
+                  height={100}
+                  className="object-contain"
+              />
+            </div>
+            <Link href="/resources">
+              <Button
+                  variant="secondary"
+                  size="lg"
+                  className="bg-white text-[#F05023] hover:bg-gray-100 transform transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+              >
+                Explore Resources
+              </Button>
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Link href="/resources#imposter-syndrome">
+              <Tilt>
+                <Card className="border-[#F05023] border-2 bg-white/80">
+                  <CardHeader>
+                    <CardTitle className="text-[#F05023]">
+                      Overcoming Imposter Syndrome
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-black">
+                      Learn strategies to overcome self-doubt and build confidence in your programming journey.
+                    </p>
+                  </CardContent>
+                </Card>
+              </Tilt>
+            </Link>
+
+            <Link href="/resources#growth-mindset">
+              <Tilt>
+                <Card className="border-[#F05023] border-2 bg-white/80">
+                  <CardHeader>
+                    <CardTitle className="text-[#F05023]">
+                      Developing Growth Mindset
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-black">
+                      Discover how to cultivate a mindset that embraces challenges and learns from mistakes.
+                    </p>
+                  </CardContent>
+                </Card>
+              </Tilt>
+            </Link>
+
+            <Link href="/resources#programming-tips">
+              <Tilt>
+                <Card className="border-[#F05023] border-2 bg-white/80">
+                  <CardHeader>
+                    <CardTitle className="text-[#F05023]">
+                      Tips for New Programmers
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-black">
+                      Get practical advice and resources to help you succeed in your computer science studies.
+                    </p>
+                  </CardContent>
+                </Card>
+              </Tilt>
+            </Link>
+          </div>
+        </div>
+      </div>
   );
 }
