@@ -1,6 +1,3 @@
-
-You can update your README.md to be more specific to your UTRGV Computer Science Confidence-Building Website project. Here’s a modified version that combines project-specific information with the original Next.js instructions:
-
 UTRGV Computer Science Confidence-Building Website
 This project is a website designed to help UTRGV Computer Science students build confidence in their programming skills and overcome imposter syndrome. It includes resources, student stories, FAQs, and contact information for support services.
 
