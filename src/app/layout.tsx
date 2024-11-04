@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,13 +20,13 @@ export default function RootLayout({
         <html lang="en">
         <body className={`${inter.className} bg-white relative min-h-screen`}>
         <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
-            <img
+            <Image
                 src="/images/v-logo.png"
                 alt="UTRGV V Logo Background"
+                width={1000}
+                height={1000}
                 className="w-[80%] max-w-[1000px] opacity-30"
-                style={{
-                    filter: 'contrast(100%) brightness(90%)'
-                }}
+                priority
             />
         </div>
 

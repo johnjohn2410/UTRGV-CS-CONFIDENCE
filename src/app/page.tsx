@@ -6,24 +6,32 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 
+interface TiltNodeType extends HTMLDivElement {
+  vanillaTilt?: {
+    destroy: () => void;
+  };
+}
+
 function Tilt({ children }: { children: React.ReactNode }) {
-  const tiltRef = useRef(null);
+  const tiltRef = useRef<TiltNodeType>(null);
 
   useEffect(() => {
     const tiltNode = tiltRef.current;
-    VanillaTilt.init(tiltNode!, {
-      max: 10,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.3,
-      scale: 1.05
-    });
-    return () => {
-      if (tiltNode) {
-        // @ts-ignore
-        tiltNode.vanillaTilt.destroy();
-      }
-    };
+    if (tiltNode) {
+      VanillaTilt.init(tiltNode, {
+        max: 10,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.3,
+        scale: 1.05
+      });
+
+      return () => {
+        if (tiltNode.vanillaTilt) {
+          tiltNode.vanillaTilt.destroy();
+        }
+      };
+    }
   }, []);
 
   return (
