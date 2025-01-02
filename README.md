@@ -1,5 +1,5 @@
-🌟 UTRGV Computer Science Confidence-Building Website 🌟
-Welcome to the UTRGV Computer Science Confidence-Building Website! This project is dedicated to helping students overcome imposter syndrome, build confidence in their programming skills, and to connect with valuable resources. Let’s inspire each other and grow together! 💪👩‍💻👨‍💻
+##🌟 UTRGV Computer Science Confidence-Building Website 🌟
+Welcome to the UTRGV Computer Science Confidence-Building Website! This project is dedicated to helping students overcome imposter syndrome, build confidence in their programming skills, and to connect with valuable resources. Let’s inspire each other and grow together! 💪👩‍💻👨‍💻##
 
 📜 Table of Contents
 ✨ Project Overview
